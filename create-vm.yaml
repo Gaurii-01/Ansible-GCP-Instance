@@ -4,9 +4,9 @@
   gather_facts: no
 
   vars:
-    gcp_project: "k8s-practice-projects"
+    gcp_project: "YOUR_PROJECT_ID"
     gcp_zone: "us-central1-a"
-    gcp_credentials_file: "files/service-account.json"
+    gcp_credentials_file: "{{ lookup('env', 'GCP_KEY_FILE') }}"
 
   tasks:
     - name: Create GCP VM
@@ -23,5 +23,5 @@
             initialize_params:
               source_image: "projects/debian-cloud/global/images/family/debian-11"
         network_interfaces:
-          - network: default
+          - network: "projects/{{ gcp_project }}/global/networks/default"
         state: present
