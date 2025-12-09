@@ -1,0 +1,27 @@
+---
+- name: Create GCP VM Instance
+  hosts: localhost
+  gather_facts: no
+
+  vars:
+    gcp_project: "k8s-practice-projects"
+    gcp_zone: "us-central1-a"
+    gcp_credentials_file: "files/service-account.json"
+
+  tasks:
+    - name: Create GCP VM
+      google.cloud.gcp_compute_instance:
+        name: "ansible-jenkins-instance"
+        machine_type: "e2-medium"
+        project: "{{ gcp_project }}"
+        zone: "{{ gcp_zone }}"
+        auth_kind: serviceaccount
+        service_account_file: "{{ gcp_credentials_file }}"
+        disks:
+          - auto_delete: true
+            boot: true
+            initialize_params:
+              source_image: "projects/debian-cloud/global/images/family/debian-11"
+        network_interfaces:
+          - network: default
+        state: present
