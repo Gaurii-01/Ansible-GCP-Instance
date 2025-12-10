@@ -1,0 +1,8 @@
+project_id: "natural-system-457406-k1"
+region: "asia-south1"
+zone: "asia-south1-a"
+instance_name: "jenkins-ansible-instance"
+machine_type: "e2-medium"
+image_family: "debian-11"
+image_project: "debian-cloud"
+credentials_file: "{{ lookup('env','GOOGLE_CREDENTIALS') }}"
