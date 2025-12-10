@@ -1,4 +1,4 @@
-project_id: "natural-system-457406-k1"
+project_id: "k8s-practice-projects"
 region: "asia-south1"
 zone: "asia-south1-a"
 instance_name: "jenkins-ansible-instance"
